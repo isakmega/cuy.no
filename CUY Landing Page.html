@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUY - AI-drevet CRM for Stillingsannonser</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/GjFwYts/cuy-icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #FAEADC;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header - Clean white with logo and login */
+        header {
+            background-color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #D2691E;
+            letter-spacing: 1px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-header-login {
+            background-color: #D2691E;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-header-login:hover {
+            background-color: #B8521A;
+            box-shadow: 0 4px 12px rgba(210, 105, 30, 0.3);
+        }
+
+        .btn-header-contact {
+            background-color: #FAEADC;
+            color: #D2691E;
+            padding: 0.7rem 1.5rem;
+            border: 2px solid #D2691E;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-header-contact:hover {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(210, 105, 30, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #D2691E 0%, #B8521A 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(210, 105, 30, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #D2691E;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Problem-Solution section */
+        .problem-solution {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            border-left: 5px solid #D2691E;
+        }
+
+        .problem-solution h2 {
+            color: #D2691E;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .problem-solution ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .problem-solution li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+        }
+
+        .problem-solution li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #D2691E;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .cta-section {
+            background-color: #FAEADC;
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cta-section h2 {
+            color: #D2691E;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .cta-section p {
+            color: #555;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-cta {
+            background-color: #D2691E;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            background-color: #B8521A;
+            box-shadow: 0 6px 20px rgba(210, 105, 30, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #FAEADC;
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(210, 105, 30, 0.2);
+        }
+
+        footer a {
+            color: #D2691E;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .header-buttons {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .btn-header-login, .btn-header-contact {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-brand">
+            <img src="https://i.ibb.co/qFD0P8vr/cuy-mascot.jpg" alt="CUY Logo" class="header-logo">
+            <div class="header-title">CUY</div>
+        </div>
+        <div class="header-buttons">
+            <button class="btn-header-login" onclick="window.location.href='https://n8n.srv1072209.hstgr.cloud/webhook/cuy?btn=login&url=http://cuy.no/'">Logg inn</button>
+            <button class="btn-header-contact" onclick="window.location.href='https://n8n.srv1072209.hstgr.cloud/webhook/cuy?btn=cnct&url=mailto:post@cuy.no'">Kontakt oss</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Automatiser stillingsannonser med AI</h1>
+        <p>CUY transformerer prosessen fra manuelt arbeid til intelligente automations. Prospekter, ringinger, og tilbud – helt automatisert.</p>
+    </section>
+
+    <main>
+        <section class="problem-solution">
+            <h2>Behold det du er god til – Selg</h2>
+            <p style="margin-bottom: 1.5rem; color: #555;">CUY kuttes den manuelle prosessen drastisk og lar deg fokusere på det som betyr noe: å selge stillingsannonser.</p>
+            <ul>
+                <li><strong>AI-drevet prospektering:</strong> Automatisk webscraping finner nye stillinger fra relevante kilder</li>
+                <li><strong>Intelligente prospektdata:</strong> Arbeidsgiver, kontaktperson, telefon og e-post hentes automatisk</li>
+                <li><strong>Smartere oppfølging:</strong> Oversikt over ringinger, tilbud og svar på ett sted</li>
+                <li><strong>Automatisk tilbudsmail:</strong> Lag og send personaliserte tilbudsmaler med ett klikk via n8n</li>
+                <li><strong>Nisje-CRM design:</strong> Bygget spesifikt for stillingsannonse-salg – ikke generisk</li>
+            </ul>
+        </section>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🐹 🤖</div>
+                <h3>AI-drevet</h3>
+                <p>n8n-basert automatisering som håndterer webscraping, dataprosessering og e-postsendig.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🐹 📊</div>
+                <h3>Oversiktlig UI</h3>
+                <p>Google Sheets-inspirert grensesnitt med drag-and-drop, sortering, og kolonnekontroll.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3>Tidsbasert organisering</h3>
+                <p>Prospekter organisert etter dato, med mulighet for år- og månedvalg.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📧</div>
+                <h3>Automatisk follow-up</h3>
+                <p>Send personaliserte tilbudsmaler direkte fra prospektet uten å forlate systemet.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Bedrift-basert</h3>
+                <p>Hver bedrift har sitt eget CRM med egne brukere, innstillinger og data.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Skalerbart</h3>
+                <p>Designet for å vokse fra MVP til fullversjon med RSS-feed, CRM-modul, og mer.</p>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <h2>Klar til å automatisere? 🐹</h2>
+            <p>CUY er under utvikling. Registrer interesser eller ta kontakt for early access.</p>
+            <button class="btn-cta" onclick="window.location.href='https://n8n.srv1072209.hstgr.cloud/webhook/cuy?btn=cnct2&url=mailto:post@cuy.no'">Ta kontakt nå</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>CUY © 2026</p>
+        <p>Spørsmål? Kontakt oss på <a href="mailto:post@cuy.no">post@cuy.no</a></p>
+    </footer>
+</body>
+</html>
